@@ -1,0 +1,12 @@
+<h1> Make a Post! </h1>
+
+<form action="<%= user_posts_url(params[:user_id])%>" method="POST">
+    <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token %>">
+        <label>Title
+            <input type="text" name="posts[title]">
+        </label>
+        <button>Create Post!</button>
+    <% if flash.now[:errors]%>
+       <p><%= flash.now[:errors].join(" ") %></p> 
+    <% end %>
+</form>

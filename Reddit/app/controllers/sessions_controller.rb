@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
         )
         if @user
             signin!(@user)
-            redirect_to users_url
+            redirect_to user_url(@user)
         else
             flash.now[:errors] = @user.errors.full_messages
             render :new

@@ -19,7 +19,7 @@ class PostsController < ApplicationController
         @post.user_id = params[:user_id]
         # @post.sub_id = post_params[:sub_id] get it from POSTSUBS
         if @post.save
-            render :show
+            redirect_to user_url(@user)
         else
             flash.now[:errors] = @post.errors.full_messages
             render :new
@@ -33,7 +33,7 @@ class PostsController < ApplicationController
 
     def update
         @post = current_user.posts.find_by(id: params[:id])
-        if @post.update_attributes(post_params)
+        if @post.update(post_params)
             redirect_to post_url(@post)
         else
             flash.now[:errors]= @post.errors.full_messages

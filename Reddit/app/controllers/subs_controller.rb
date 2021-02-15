@@ -1,5 +1,5 @@
 class SubsController < ApplicationController
-    before_action :require_logged_in, only:[:edit, :update, :new, :create]
+    before_action :require_signed_in, only:[:edit, :update, :new, :create]
     def new
         @sub = Sub.new
         render :new

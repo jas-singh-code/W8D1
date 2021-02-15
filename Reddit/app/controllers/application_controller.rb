@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+    helper_method :signed_in?, :current_user
     
     def signin!(user) # OR login
         @current_user = user

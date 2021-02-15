@@ -1,4 +1,5 @@
 class SubsController < ApplicationController
+    before_action :require_logged_in, only:[:edit, :update, :new, :create]
     def new
         @sub = Sub.new
         render :new
@@ -21,7 +22,7 @@ class SubsController < ApplicationController
     end
 
     def update
-        @sub = Sub.find_by(id: params[:id])
+        @sub = current_user.subs.find_by(id: params[:id])
         if @sub.update_attributes(sub_params)
             redirect_to sub_url(@sub)
         else
@@ -39,7 +40,6 @@ class SubsController < ApplicationController
         @subs = Sub.all
         render :index
     end
-
 
     def sub_params
         params.require(:sub).permit(:title, :description)

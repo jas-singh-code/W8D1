@@ -10,6 +10,17 @@
   </head>
 
   <body>
+  <% if flash.now[:errors]  %>
+      <p><%= flash.now[:errors].join(", ") %></p>
+  <% end  %>
+  <% if signed_in? %>
+    <form action="new_session_url" method="POST">
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+      <button>Sign Out</button>
+    </form>
+  <% end %>
+
+
     <%= yield %>
   </body>
 </html>

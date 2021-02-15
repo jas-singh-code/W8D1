@@ -5,6 +5,11 @@ class UsersController < ApplicationController
         render :index
     end
 
+    def show
+        @user = User.find_by(username: username)
+        render :show
+    end
+
     def new
         @user = User.new
         render :new

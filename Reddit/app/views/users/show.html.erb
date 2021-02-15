@@ -1,0 +1,17 @@
+<h1> Welcome <%= @user.username %> </h1>
+
+    <div>These are your Posts!
+        <ul> 
+        <% @user.subs.each do |sub| %>
+            <li><%= sub.title %></li>
+            <li><%= sub.description %></li>
+            <form action="sub_url" method="POST">
+                <input type="hidden" name="_method" value="PATCH">
+                <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>"> 
+                <button>Update Post</button>
+            </form>
+        <% end %>
+        </ul>
+    </div>
+
+    
